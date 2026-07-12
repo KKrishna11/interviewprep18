@@ -348,11 +348,11 @@ function escapeHtml(s){
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 
 
-
 function getDefaultStartMonday(){
   const d = new Date();
   const day = d.getDay(); 
-  const diff = day === 1 ? 0 : ((8 - day) % 7); // Fast-forwards to the next Monday
+  // If Sunday (0), go back 6 days. Otherwise, go back to Monday (1)
+  const diff = day === 0 ? -6 : 1 - day; 
   d.setDate(d.getDate() + diff);
   return todayStr(d);
 }
