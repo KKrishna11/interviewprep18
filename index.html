@@ -351,8 +351,8 @@ function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(
 
 function getDefaultStartMonday(){
   const d = new Date();
-  const day = d.getDay(); // 0 is Sunday, 1 is Monday, etc.
-  const diff = day === 0 ? -6 : 1 - day; // Go back to the most recent Monday
+  const day = d.getDay(); 
+  const diff = day === 1 ? 0 : ((8 - day) % 7); // Fast-forwards to the next Monday
   d.setDate(d.getDate() + diff);
   return todayStr(d);
 }
